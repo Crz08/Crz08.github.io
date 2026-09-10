@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecCode & Tech - Ciberseguridad y Desarrollo</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --bg-card: #1e1e1e;
+            --bg-card-hover: #252525;
+            --border-color: #2c2c2c;
+            --text-main: #f8f9fa;
+            --text-muted: #adb5bd;
+            --accent-green: #00ff88;
+            --accent-green-hover: #00cc6a;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        .font-mono {
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: rgba(18, 18, 18, 0.95) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .navbar-brand, .nav-link {
+            color: var(--text-main) !important;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-green) !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.95)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 160px 0 100px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero h1 {
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        .hero span {
+            color: var(--accent-green);
+        }
+
+        /* Botones personalizados */
+        .btn-custom-green {
+            background-color: var(--accent-green);
+            color: #000;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom-green:hover {
+            background-color: var(--accent-green-hover);
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+        }
+
+        .btn-outline-custom {
+            border: 1px solid var(--accent-green);
+            color: var(--accent-green);
+            font-weight: 600;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-custom:hover {
+            background-color: var(--accent-green);
+            color: #000;
+        }
+
+        /* Tarjetas de Servicios */
+        .service-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-green);
+            background-color: var(--bg-card-hover);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--accent-green);
+            margin-bottom: 20px;
+        }
+
+        /* Secciones */
+        section {
+            padding: 90px 0;
+        }
+
+        .bg-secondary-custom {
+            background-color: #181818;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Formularios y Inputs */
+        .form-control, .form-select {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: var(--bg-card);
+            border-color: var(--accent-green);
+            color: var(--text-main);
+            box-shadow: 0 0 0 0.25rem rgba(0, 255, 136, 0.25);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0d0d0d;
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            color: var(--text-muted);
+        }
+
+        /* Animación sutil de entrada */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand font-mono fw-bold fs-4" href="#">
+                <i class="fa-solid fa-shield-halved text-success me-2"></i>SecCode<span class="text-success">&</span>Tech
+            </a>
+            <button class="navbar-toggler border-0 text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sobre-nosotros">Nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                        <a href="#contacto" class="btn btn-custom-green btn-sm px-3 py-2">Cotizar Servicio</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header id="inicio" class="hero">
+        <div class="container text-center text-lg-start">
+            <div class="row align-items-center">
+                <div class="col-lg-7 fade-in">
+                    <span class="font-mono text-success bg-dark border border-secondary px-3 py-1 rounded-pill d-inline-block mb-3">
+                        <i class="fa-solid fa-terminal me-1"></i> Soluciones Tecnológicas & Seguridad Avanzada
+                    </span>
+                    <h1 class="display-4 fw-bold mb-3">Protegemos tu infraestructura, desarrollamos tu <span>futuro digital</span></h1>
+                    <p class="lead text-muted mb-4">Auditorías de ciberseguridad, desarrollo de software robusto a medida (Python, SQL, Web) y soporte técnico especializado en hardware, software y control remoto.</p>
+                    <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start gap-3">
+                        <a href="#servicios" class="btn btn-custom-green btn-lg px-4">Explorar Servicios</a>
+                        <a href="#contacto" class="btn btn-outline-custom btn-lg px-4">Contáctanos</a>
+                    </div>
+                </div>
+                <div class="col-lg-5 mt-5 mt-lg-0 d-none d-lg-block text-center">
+                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80" alt="Ciberseguridad y Código" class="img-fluid rounded-4 shadow-lg border border-secondary" style="max-height: 380px; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECCIÓN DE SERVICIOS -->
+    <section id="servicios">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="font-mono text-success text-uppercase tracking-wider">Lo que hacemos</span>
+                <h2 class="fw-bold fs-1">Nuestros Servicios Profesionales</h2>
+                <p class="text-muted">Soluciones integrales diseñadas para empresas y usuarios particulares exigentes.</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Servicio 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card p-4">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-user-secret"></i>
+                        </div>
+                        <h3 class="h5 fw-bold mb-3">Auditoría de Ciberseguridad</h3>
+                        <p class="text-muted small">Evaluación exhaustiva de dispositivos y redes. Detectamos vulnerabilidades antes de que los atacantes lo hagan, protegiendo tus datos críticos.</p>
+                    </div>
+                </div>
+
+                <!-- Servicio 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card p-4">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3 class="h5 fw-bold mb-3">Sistemas de Información</h3>
+                        <p class="text-muted small">Creación de software a medida usando HTML, CSS, JavaScript, Python y bases de datos SQL eficientes adaptadas a los procesos de tu negocio.</p>
+                    </div>
+                </div>
+
+                <!-- Servicio 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card p-4">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <h3 class="h5 fw-bold mb-3">Reparación Hardware & Software</h3>
+                        <p class="text-muted small">Diagnóstico técnico avanzado y optimización de equipos informáticos, solución a fallas crónicas de sistema y componentes físicos.</p>
+                    </div>
+                </div>
+
+                <!-- Servicio 4 -->
+                <div class="col-md-6 col-lg-6">
+                    <div class="service-card p-4">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                        </div>
+                        <h3 class="h5 fw-bold mb-3">Desbloqueos y Telefonía Móvil</h3>
+                        <p class="text-muted small">Servicios técnicos especializados en liberación de dispositivos móviles, gestión de restricciones de fábrica y optimización de sistemas operativos móviles.</p>
+                    </div>
+                </div>
+
+                <!-- Servicio 5 -->
+                <div class="col-md-6 col-lg-6">
+                    <div class="service-card p-4">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-shield-cat"></i>
+                        </div>
+                        <h3 class="h5 fw-bold mb-3">Control Remoto y Parental</h3>
+                        <p class="text-muted small">Configuración e implementación de sistemas de control remoto para dispositivos, herramientas de control parental avanzadas y monitoreo de seguridad digital familiar o corporativa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE NOSOTROS / ESTADÍSTICAS -->
+    <section id="sobre-nosotros" class="bg-secondary-custom">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80" alt="Seguridad Informática" class="img-fluid rounded-4 shadow border border-secondary">
+                </div>
+                <div class="col-lg-6 ps-lg-5">
+                    <span class="font-mono text-success text-uppercase">Confianza y Experiencia</span>
+                    <h2 class="fw-bold fs-2 mb-3">Seguridad y Tecnología sin margen de error</h2>
+                    <p class="text-muted mb-4">Brindamos soluciones integrales combinando el análisis de seguridad ofensivo/defensivo con el desarrollo de sistemas robustos. Nuestro compromiso es garantizar que tu tecnología sea un motor seguro y eficiente para tu día a día.</p>
+                    
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="p-3 bg-dark border border-secondary rounded text-center">
+                                <h3 class="text-success fw-bold font-mono fs-3 mb-1">100%</h3>
+                                <p class="text-muted small mb-0">Enfoque Profesional</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-3 bg-dark border border-secondary rounded text-center">
+                                <h3 class="text-success fw-bold font-mono fs-3 mb-1">24/7</h3>
+                                <p class="text-muted small mb-0">Soporte Técnico</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE CONTACTO -->
+    <section id="contacto">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="text-center mb-5">
+                        <span class="font-mono text-success text-uppercase">Ponte en contacto</span>
+                        <h2 class="fw-bold fs-1">Solicita una Consulta o Presupuesto</h2>
+                        <p class="text-muted">Completa el formulario y nos pondremos en contacto contigo a la brevedad.</p>
+                    </div>
+
+                    <div class="card bg-card border border-secondary p-4 p-md-5 rounded-4 shadow-lg">
+                        <!-- Alerta dinámica al enviar el formulario -->
+                        <div id="formAlert" class="alert alert-success d-none" role="alert">
+                            ¡Mensaje enviado con éxito! Nos comunicaremos contigo pronto.
+                        </div>
+
+                        <form id="contactForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="nombre" class="form-label text-muted small">Nombre completo</label>
+                                    <input type="text" class="form-control" id="nombre" required placeholder="Ej. Carlos Pérez">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label text-muted small">Correo electrónico</label>
+                                    <input type="email" class="form-control" id="email" required placeholder="correo@ejemplo.com">
+                                </div>
+                                <div class="col-12">
+                                    <label for="servicioSelect" class="form-label text-muted small">Servicio de interés</label>
+                                    <select class="form-select" id="servicioSelect">
+                                        <option selected>Selecciona un servicio</option>
+                                        <option value="Auditoría">Auditoría de Ciberseguridad</option>
+                                        <option value="Software">Creación de Sistemas (Python/Web)</option>
+                                        <option value="Hardware">Reparación de Hardware y Software</option>
+                                        <option value="Desbloqueo">Desbloqueo de Celulares</option>
+                                        <option value="Control">Control Remoto y Parental</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label for="mensaje" class="form-label text-muted small">Mensaje o Detalles</label>
+                                    <textarea class="form-control" id="mensaje" rows="4" required placeholder="Cuéntanos sobre tu requerimiento..."></textarea>
+                                </div>
+                                <div class="col-12 text-center mt-4">
+                                    <button type="submit" class="btn btn-custom-green px-5 py-3 w-100 fw-bold">Enviar Mensaje</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container text-center">
+            <p class="font-mono mb-2 text-light"><i class="fa-solid fa-shield-halved text-success me-2"></i>SecCode & Tech Solutions</p>
+            <p class="small text-muted mb-0">&copy; 2026 Todos los derechos reservados. Seguridad, Desarrollo y Soporte Especializado.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Script personalizado -->
+    <script src="script.js"></script>
+</body>
+</html>
