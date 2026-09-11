@@ -1,14 +1,64 @@
 :root {
-    --black: #080808;
-    --black-2: #0d0d0d;
-    --black-3: #111111;
-    --gray-1: #171717;
-    --gray-2: #222222;
-    --gray-3: #333333;
-    --gray-4: #777777;
-    --gray-5: #aaaaaa;
-    --white: #f5f5f5;
-    --white-2: #dddddd;
+  /* Tema OSCURO (default - tu diseño actual) */
+  --bg: #080808;
+  --bg-secondary: #0d0d0d;
+  --bg-card: #0c0c0c;
+  --text: #f5f5f5;
+  --text-muted: #aaaaaa;
+  --text-secondary: #777777;
+  --border: #222222;
+  --border-light: #333333;
+  --accent: #ffffff;
+  --accent-hover: #d5d5d5;
+  
+  /* Variables legacy para compatibilidad */
+  --black: #080808;
+  --black-2: #0d0d0d;
+  --black-3: #111111;
+  --gray-1: #171717;
+  --gray-2: #222222;
+  --gray-3: #333333;
+  --gray-4: #777777;
+  --gray-5: #aaaaaa;
+  --white: #f5f5f5;
+  --white-2: #dddddd;
+}
+
+/* Tema CLARO */
+[data-theme="light"] {
+  --bg: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-card: #ffffff;
+  --text: #1a1a1a;
+  --text-muted: #666666;
+  --text-secondary: #555555;
+  --border: #e0e0e0;
+  --border-light: #eeeeee;
+  --accent: #007bff;
+  --accent-hover: #0056b3;
+  
+  /* Legacy vars */
+  --black: #ffffff;
+  --black-2: #f8f9fa;
+  --black-3: #f0f0f0;
+  --gray-1: #e9ecef;
+  --gray-2: #dee2e6;
+  --gray-3: #ced4da;
+  --gray-4: #6c757d;
+  --gray-5: #495057;
+  --white: #1a1a1a;
+  --white-2: #333333;
+}
+
+/* Transición suave para cambios de tema */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Aplicar variables base */
+body {
+  background: var(--bg);
+  color: var(--text);
 }
 
 a, button {
@@ -835,4 +885,41 @@ footer {
         right: 18px;
         bottom: 18px;
     }
+}
+/* ============================================
+   BOTÓN DE CAMBIO DE TEMA
+   ============================================ */
+
+#theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text);
+  font-size: 1.3rem;
+  cursor: pointer;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+#theme-toggle:hover {
+  transform: scale(1.1);
+  border-color: var(--border-light);
+}
+
+/* Ajuste para móvil */
+@media (max-width: 991px) {
+  #theme-toggle {
+    top: 80px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+  }
 }
