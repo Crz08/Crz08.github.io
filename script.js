@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <i class="fa-solid fa-spinner fa-spin ms-2"></i>
         `;
 
-        const numeroWhatsApp = "573169709152";
+        const numeroWhatsApp = "573133972761";
 
         const mensajeWhatsApp = `
 Nueva solicitud desde SecCode & Tech
