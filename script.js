@@ -1,9 +1,13 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
     const form = document.getElementById("contactForm");
     const alertBox = document.getElementById("formAlert");
 
-    form.addEventListener("submit", async (event) => {
+    if (!form) {
+        return;
+    }
+
+    form.addEventListener("submit", async function (event) {
 
         event.preventDefault();
 
@@ -13,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const mensaje = document.getElementById("mensaje").value.trim();
 
         if (!nombre || !email || !servicio || !mensaje) {
-            mostrarAlerta(
+            mostrarMensaje(
                 "Por favor completa todos los campos.",
                 "danger"
             );
@@ -23,101 +27,116 @@ document.addEventListener("DOMContentLoaded", () => {
         const boton = form.querySelector("button[type='submit']");
 
         boton.disabled = true;
-        boton.innerHTML = "Enviando...";
+        boton.innerHTML = `
+            Enviando...
+            <i class="fa-solid fa-spinner fa-spin ms-2"></i>
+        `;
 
-        const telefono = "573169709152";
+        const numeroWhatsApp = "573169709152";
 
-        const textoWhatsApp =
-`Nueva solicitud desde SecCode & Tech
+        const mensajeWhatsApp = `
+Nueva solicitud desde SecCode & Tech
 
 Nombre: ${nombre}
 Correo: ${email}
 Servicio: ${servicio}
 
 Mensaje:
-${mensaje}`;
+${mensaje}
+        `.trim();
 
-        const whatsappURL =
-            `https://wa.me/${telefono}?text=${encodeURIComponent(textoWhatsApp)}`;
-
-        const formData = new FormData(form);
+        const urlWhatsApp =
+            "https://wa.me/" +
+            numeroWhatsApp +
+            "?text=" +
+            encodeURIComponent(mensajeWhatsApp);
 
         try {
 
-            const response = await fetch(
+            const datos = new FormData(form);
+
+            const respuesta = await fetch(
                 "https://api.web3forms.com/submit",
                 {
                     method: "POST",
-                    body: formData
+                    body: datos
                 }
             );
 
-            const data = await response.json();
+            const resultado = await respuesta.json();
 
-            if (data.success) {
+            if (resultado.success) {
 
-                mostrarAlerta(
-                    `Gracias ${nombre}. Tu solicitud fue enviada correctamente.`,
+                mostrarMensaje(
+                    "Solicitud enviada correctamente. También se abrirá WhatsApp.",
                     "success"
                 );
 
-                window.open(whatsappURL, "_blank");
-
                 form.reset();
+
+                window.open(urlWhatsApp, "_blank");
 
             } else {
 
-                mostrarAlerta(
-                    "No fue posible enviar el correo. Se abrirá WhatsApp para que puedas enviar la solicitud.",
+                mostrarMensaje(
+                    "No se pudo enviar el correo. Se abrirá WhatsApp.",
                     "warning"
                 );
 
-                window.open(whatsappURL, "_blank");
+                window.open(urlWhatsApp, "_blank");
             }
 
         } catch (error) {
 
-            mostrarAlerta(
-                "No fue posible conectar con el servicio de correo. Se abrirá WhatsApp.",
+            console.error(error);
+
+            mostrarMensaje(
+                "No se pudo conectar con el servicio de correo. Se abrirá WhatsApp.",
                 "warning"
             );
 
-            window.open(whatsappURL, "_blank");
+            window.open(urlWhatsApp, "_blank");
 
         } finally {
 
             boton.disabled = false;
 
-            boton.innerHTML =
-                `Enviar solicitud
-                <i class="fa-solid fa-arrow-right ms-2"></i>`;
+            boton.innerHTML = `
+                Enviar solicitud
+                <i class="fa-solid fa-arrow-right ms-2"></i>
+            `;
         }
+
     });
 
 
-    function mostrarAlerta(mensaje, tipo) {
+    function mostrarMensaje(mensaje, tipo) {
 
-        alertBox.className = `alert alert-${tipo}`;
+        alertBox.className = "alert alert-" + tipo;
         alertBox.textContent = mensaje;
+
+        alertBox.classList.remove("d-none");
 
         alertBox.scrollIntoView({
             behavior: "smooth",
             block: "center"
         });
 
-        setTimeout(() => {
-            alertBox.className = "alert d-none";
+        setTimeout(function () {
+
+            alertBox.classList.add("d-none");
+
         }, 7000);
     }
 
 
-    document.querySelectorAll('a[href^="#"]').forEach((enlace) => {
+    document.querySelectorAll('a[href^="#"]').forEach(function (enlace) {
 
         enlace.addEventListener("click", function (event) {
 
             const destino = this.getAttribute("href");
 
-            if (destino === "#") {
+            if (!destino || destino === "#") {
                 return;
             }
 
