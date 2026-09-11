@@ -1,8 +1,13 @@
+/* ============================================
+   VARIABLES DE TEMA - UNIFICADAS
+   ============================================ */
+
 :root {
   /* Tema OSCURO (default - tu diseño actual) */
   --bg: #080808;
   --bg-secondary: #0d0d0d;
   --bg-card: #0c0c0c;
+  --bg-panel: #080808;
   --text: #f5f5f5;
   --text-muted: #aaaaaa;
   --text-secondary: #777777;
@@ -29,6 +34,7 @@
   --bg: #ffffff;
   --bg-secondary: #f8f9fa;
   --bg-card: #ffffff;
+  --bg-panel: #f8f9fa;
   --text: #1a1a1a;
   --text-muted: #666666;
   --text-secondary: #555555;
@@ -50,98 +56,12 @@
   --white-2: #333333;
 }
 
-/* Ajustes específicos para tema claro */
-[data-theme="light"] .navbar {
-  background: rgba(255, 255, 255, 0.94);
-  border-bottom-color: var(--border);
-}
-
-[data-theme="light"] .hero {
-  background: radial-gradient(circle at 80% 40%, rgba(0,0,0,.05), transparent 30%),
-              var(--bg);
-}
-
-[data-theme="light"] .terminal-card {
-  background: #f8f9fa;
-  border-color: var(--border);
-  box-shadow: 0 30px 80px rgba(0,0,0,.15);
-}
-
-[data-theme="light"] .terminal-body {
-  color: #333;
-}
-
-[data-theme="light"] .terminal-muted {
-  color: #666;
-}
-
-[data-theme="light"] .service-card {
-  background: var(--bg-card);
-  border-color: var(--border);
-}
-
-[data-theme="light"] .service-card:hover {
-  border-color: var(--border-light);
-}
-
-[data-theme="light"] .contact-form,
-[data-theme="light"] .contact-info a,
-[data-theme="light"] .about-panel,
-[data-theme="light"] .stat {
-  background: var(--bg-card);
-  border-color: var(--border);
-}
-
-[data-theme="light"] .contact-form input,
-[data-theme="light"] .contact-form select,
-[data-theme="light"] .contact-form textarea {
-  background: #f8f9fa;
-  color: var(--text);
-  border-color: var(--border);
-}
-
-[data-theme="light"] .form-check label {
-  color: var(--text-muted);
-}
-
-[data-theme="light"] .footer-links a {
-  color: var(--text-muted);
-}
-
-[data-theme="light"] .footer-links a:hover {
-  color: var(--text);
-}
-
-[data-theme="light"] .accordion-button {
-  color: var(--text);
-}
-
-[data-theme="light"] .accordion-button::after {
-  filter: invert(0);
-}
-
-[data-theme="light"] .accordion-body {
-  color: var(--text-muted);
-}
-
 /* Transición suave para cambios de tema */
 * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-
-/* Aplicar variables base */
-body {
-  background: var(--bg);
-  color: var(--text);
-}
-
-a, button {
-  color: var(--primary);
-}
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 }
 
 html {
@@ -149,8 +69,8 @@ html {
 }
 
 body {
-    background: var(--black);
-    color: var(--white);
+    background: var(--bg);
+    color: var(--text);
     font-family: "Inter", sans-serif;
     line-height: 1.7;
 }
@@ -158,6 +78,34 @@ body {
 a {
     color: inherit;
     text-decoration: none;
+}
+
+/* ============================================
+   BOTÓN DE CAMBIO DE TEMA
+   ============================================ */
+
+#theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text);
+  font-size: 1.3rem;
+  cursor: pointer;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+#theme-toggle:hover {
+  transform: scale(1.1);
+  border-color: var(--border-light);
 }
 
 .site-header {
@@ -168,7 +116,7 @@ a {
 .navbar {
     background: rgba(8, 8, 8, .94);
     backdrop-filter: blur(14px);
-    border-bottom: 1px solid #1c1c1c;
+    border-bottom: 1px solid var(--border);
     padding: 18px 0;
 }
 
@@ -244,10 +192,10 @@ a {
     align-items: center;
     position: relative;
     overflow: hidden;
-    border-bottom: 1px solid #1c1c1c;
+    border-bottom: 1px solid var(--border);
     background:
         radial-gradient(circle at 80% 40%, rgba(255,255,255,.05), transparent 30%),
-        var(--black);
+        var(--bg);
 }
 
 .hero-grid {
@@ -255,8 +203,8 @@ a {
     inset: 0;
     opacity: .22;
     background-image:
-        linear-gradient(#222 1px, transparent 1px),
-        linear-gradient(90deg, #222 1px, transparent 1px);
+        linear-gradient(var(--gray-2) 1px, transparent 1px),
+        linear-gradient(90deg, var(--gray-2) 1px, transparent 1px);
     background-size: 70px 70px;
     mask-image: linear-gradient(to bottom, black, transparent);
 }
@@ -291,12 +239,12 @@ a {
 .hero h1 span,
 .section-heading h2 span,
 .section h2 span {
-    color: #777;
+    color: var(--text-secondary);
 }
 
 .hero-text {
     max-width: 650px;
-    color: #999;
+    color: var(--text-muted);
     font-size: 18px;
     margin: 28px 0;
 }
@@ -331,8 +279,8 @@ a {
 }
 
 .terminal-card {
-    background: #0c0c0c;
-    border: 1px solid #2b2b2b;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     box-shadow: 0 30px 80px rgba(0,0,0,.5);
     transform: rotate(1deg);
 }
@@ -343,7 +291,7 @@ a {
     align-items: center;
     justify-content: space-between;
     padding: 0 16px;
-    border-bottom: 1px solid #222;
+    border-bottom: 1px solid var(--border);
     color: #666;
     font-family: "JetBrains Mono", monospace;
     font-size: 11px;
@@ -382,13 +330,13 @@ a {
 
 .terminal-line {
     height: 1px;
-    background: #222;
+    background: var(--border);
     margin: 25px 0;
 }
 
 .stats {
-    background: #0d0d0d;
-    border-bottom: 1px solid #1c1c1c;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
 }
 
 .stat {
@@ -396,7 +344,7 @@ a {
     display: flex;
     gap: 20px;
     align-items: center;
-    border-right: 1px solid #222;
+    border-right: 1px solid var(--border);
 }
 
 .stat:last-child {
@@ -428,9 +376,9 @@ a {
 }
 
 .section-dark {
-    background: #0d0d0d;
-    border-top: 1px solid #1b1b1b;
-    border-bottom: 1px solid #1b1b1b;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
 }
 
 .section-heading {
@@ -456,22 +404,22 @@ a {
 }
 
 .section-heading p {
-    color: #777;
+    color: var(--text-secondary);
     margin-top: 20px;
 }
 
 .service-card {
     height: 100%;
     min-height: 320px;
-    background: #0d0d0d;
-    border: 1px solid #222;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     padding: 35px;
     position: relative;
     transition: .3s;
 }
 
 .service-card:hover {
-    border-color: #555;
+    border-color: var(--border-light);
     transform: translateY(-4px);
 }
 
@@ -496,7 +444,7 @@ a {
 }
 
 .service-card p {
-    color: #777;
+    color: var(--text-secondary);
     font-size: 14px;
 }
 
@@ -531,8 +479,8 @@ a {
 }
 
 .about-panel {
-    border: 1px solid #292929;
-    background: #080808;
+    border: 1px solid var(--border);
+    background: var(--bg-panel);
     padding: 25px;
 }
 
@@ -540,7 +488,7 @@ a {
     display: flex;
     justify-content: space-between;
     padding-bottom: 20px;
-    border-bottom: 1px solid #222;
+    border-bottom: 1px solid var(--border);
     font-family: "JetBrains Mono", monospace;
     font-size: 11px;
     color: #666;
@@ -555,7 +503,7 @@ a {
     align-items: center;
     justify-content: space-between;
     padding: 25px 0;
-    border-bottom: 1px solid #1d1d1d;
+    border-bottom: 1px solid var(--border);
 }
 
 .panel-item:last-child {
@@ -573,14 +521,14 @@ a {
 }
 
 .process {
-    border-top: 1px solid #292929;
+    border-top: 1px solid var(--border);
 }
 
 .process-item {
     display: grid;
     grid-template-columns: 100px 1fr;
     padding: 35px 0;
-    border-bottom: 1px solid #292929;
+    border-bottom: 1px solid var(--border);
 }
 
 .process-item > span {
@@ -593,23 +541,23 @@ a {
 }
 
 .process-item p {
-    color: #777;
+    color: var(--text-secondary);
     margin: 5px 0 0;
 }
 
 .accordion {
-    border-top: 1px solid #292929;
+    border-top: 1px solid var(--border);
 }
 
 .accordion-item {
     background: transparent;
     border: 0;
-    border-bottom: 1px solid #292929;
+    border-bottom: 1px solid var(--border);
 }
 
 .accordion-button {
     background: transparent;
-    color: var(--white);
+    color: var(--text);
     padding: 25px 0;
     font-size: 17px;
     font-weight: 600;
@@ -618,7 +566,7 @@ a {
 
 .accordion-button:not(.collapsed) {
     background: transparent;
-    color: white;
+    color: var(--text);
 }
 
 .accordion-button::after {
@@ -627,12 +575,12 @@ a {
 
 .accordion-body {
     padding: 0 40px 25px 0;
-    color: #777;
+    color: var(--text-secondary);
     font-size: 14px;
 }
 
 .contact-section {
-    background: var(--black);
+    background: var(--bg);
 }
 
 .contact-info {
@@ -647,13 +595,13 @@ a {
     align-items: center;
     gap: 18px;
     padding: 18px;
-    border: 1px solid #222;
-    background: #0d0d0d;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
     transition: .25s;
 }
 
 .contact-info a:hover {
-    border-color: #555;
+    border-color: var(--border-light);
     transform: translateX(4px);
 }
 
@@ -663,7 +611,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #333;
+    border: 1px solid var(--border-light);
     font-size: 18px;
 }
 
@@ -684,8 +632,8 @@ a {
 }
 
 .contact-form {
-    background: #0d0d0d;
-    border: 1px solid #222;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     padding: 40px;
 }
 
@@ -700,9 +648,9 @@ a {
 .contact-form select,
 .contact-form textarea {
     width: 100%;
-    background: #080808;
-    border: 1px solid #292929;
-    color: white;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
     padding: 13px 15px;
     border-radius: 2px;
     outline: none;
@@ -723,8 +671,8 @@ a {
 }
 
 .contact-form select option {
-    background: #111;
-    color: white;
+    background: var(--bg);
+    color: var(--text);
 }
 
 .contact-form textarea {
@@ -766,8 +714,8 @@ a {
 }
 
 footer {
-    background: #080808;
-    border-top: 1px solid #1c1c1c;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
     padding: 60px 0 25px;
 }
 
@@ -777,7 +725,7 @@ footer {
     align-items: flex-start;
     gap: 30px;
     padding-bottom: 45px;
-    border-bottom: 1px solid #222;
+    border-bottom: 1px solid var(--border);
 }
 
 .footer-brand {
@@ -832,7 +780,7 @@ footer {
     justify-content: center;
     border-radius: 50%;
     font-size: 27px;
-    z-index: 9999;
+    z-index: 9998;
     box-shadow: 0 8px 30px rgba(0, 0, 0, .5);
     transition: .25s;
 }
@@ -842,6 +790,226 @@ footer {
     color: white;
     transform: translateY(-4px);
 }
+
+/* ============================================
+   AJUSTES ESPECÍFICOS PARA TEMA CLARO
+   ============================================ */
+
+[data-theme="light"] .navbar {
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom-color: var(--border);
+}
+
+[data-theme="light"] .hero {
+  background: radial-gradient(circle at 80% 40%, rgba(0,0,0,.05), transparent 30%),
+              var(--bg);
+}
+
+[data-theme="light"] .hero-grid {
+    opacity: .1;
+    background-image:
+        linear-gradient(var(--gray-2) 1px, transparent 1px),
+        linear-gradient(90deg, var(--gray-2) 1px, transparent 1px);
+}
+
+[data-theme="light"] .terminal-card {
+  background: #f8f9fa;
+  border-color: var(--border);
+  box-shadow: 0 30px 80px rgba(0,0,0,.15);
+}
+
+[data-theme="light"] .terminal-body {
+  color: #333;
+}
+
+[data-theme="light"] .terminal-muted {
+  color: #666;
+}
+
+[data-theme="light"] .terminal-header {
+    border-bottom-color: var(--border);
+}
+
+[data-theme="light"] .service-card {
+  background: var(--bg-card);
+  border-color: var(--border);
+}
+
+[data-theme="light"] .service-card:hover {
+  border-color: var(--border-light);
+}
+
+[data-theme="light"] .contact-form,
+[data-theme="light"] .contact-info a,
+[data-theme="light"] .about-panel,
+[data-theme="light"] .stat {
+  background: var(--bg-card);
+  border-color: var(--border);
+}
+
+[data-theme="light"] .contact-form input,
+[data-theme="light"] .contact-form select,
+[data-theme="light"] .contact-form textarea {
+  background: #f8f9fa;
+  color: var(--text);
+  border-color: var(--border);
+}
+
+[data-theme="light"] .form-check label {
+  color: var(--text-muted);
+}
+
+[data-theme="light"] .footer-links a {
+  color: var(--text-muted);
+}
+
+[data-theme="light"] .footer-links a:hover {
+  color: var(--text);
+}
+
+[data-theme="light"] .accordion-button {
+  color: var(--text);
+}
+
+[data-theme="light"] .accordion-button::after {
+  filter: invert(0);
+}
+
+[data-theme="light"] .accordion-body {
+  color: var(--text-muted);
+}
+
+[data-theme="light"] .nav-link {
+    color: #666 !important;
+}
+
+[data-theme="light"] .nav-link:hover {
+    color: #000 !important;
+}
+
+[data-theme="light"] .navbar-brand {
+    color: #1a1a1a;
+}
+
+[data-theme="light"] .navbar-toggler {
+    color: #1a1a1a;
+}
+
+[data-theme="light"] .btn-outline-light {
+    color: #1a1a1a;
+    border-color: #1a1a1a;
+}
+
+[data-theme="light"] .btn-outline-light:hover {
+    background: #1a1a1a;
+    color: white;
+}
+
+[data-theme="light"] .hero-trust strong {
+    color: #999;
+}
+
+[data-theme="light"] .hero-trust span {
+    color: #666;
+}
+
+[data-theme="light"] .eyebrow {
+    color: #666;
+}
+
+[data-theme="light"] .eyebrow span {
+    background: #666;
+}
+
+[data-theme="light"] .section-number {
+    color: #999;
+}
+
+[data-theme="light"] .service-number {
+    color: #ccc;
+}
+
+[data-theme="light"] .service-icon {
+    color: #666;
+}
+
+[data-theme="light"] .service-card a {
+    color: #666;
+}
+
+[data-theme="light"] .service-card a:hover {
+    color: #000;
+}
+
+[data-theme="light"] .about-list div {
+    color: #555;
+}
+
+[data-theme="light"] .about-list i {
+    color: #666;
+}
+
+[data-theme="light"] .panel-top {
+    color: #999;
+    border-bottom-color: var(--border);
+}
+
+[data-theme="light"] .panel-item {
+    border-bottom-color: var(--border);
+}
+
+[data-theme="light"] .panel-item span {
+    color: #666;
+}
+
+[data-theme="light"] .process-item > span {
+    color: #999;
+}
+
+[data-theme="light"] .process-item p {
+    color: #666;
+}
+
+[data-theme="light"] .contact-info small {
+    color: #999;
+}
+
+[data-theme="light"] .contact-info strong {
+    color: #333;
+}
+
+[data-theme="light"] .contact-info i {
+    border-color: var(--border);
+}
+
+[data-theme="light"] .contact-form label {
+    color: #666;
+}
+
+[data-theme="light"] .contact-form input::placeholder,
+[data-theme="light"] .contact-form textarea::placeholder {
+    color: #999;
+}
+
+[data-theme="light"] .footer-top p {
+    color: #999;
+}
+
+[data-theme="light"] .footer-bottom {
+    color: #999;
+}
+
+[data-theme="light"] .stat > strong {
+    color: #ccc;
+}
+
+[data-theme="light"] .stat small {
+    color: #999;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 
 @media (max-width: 991px) {
 
@@ -873,6 +1041,13 @@ footer {
 
     .contact-form {
         padding: 30px;
+    }
+    
+    #theme-toggle {
+        top: 80px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
     }
 }
 
@@ -907,7 +1082,7 @@ footer {
 
     .stat {
         border-right: 0;
-        border-bottom: 1px solid #222;
+        border-bottom: 1px solid var(--border);
         padding: 25px 15px;
     }
 
@@ -959,41 +1134,4 @@ footer {
         right: 18px;
         bottom: 18px;
     }
-}
-/* ============================================
-   BOTÓN DE CAMBIO DE TEMA
-   ============================================ */
-
-#theme-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  background: var(--bg-card);
-  color: var(--text);
-  font-size: 1.3rem;
-  cursor: pointer;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-
-#theme-toggle:hover {
-  transform: scale(1.1);
-  border-color: var(--border-light);
-}
-
-/* Ajuste para móvil */
-@media (max-width: 991px) {
-  #theme-toggle {
-    top: 80px;
-    right: 15px;
-    width: 40px;
-    height: 40px;
-  }
 }
