@@ -1,39 +1,53 @@
-// Funcionalidad de interactividad para el sitio web
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // Manejo del formulario de contacto con dinamismo
     const contactForm = document.getElementById('contactForm');
     const formAlert = document.getElementById('formAlert');
 
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Evita que la página se recargue
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
 
-            // Obtener valores (puedes usarlos para integrarlos con APIs en el futuro)
-            const nombre = document.getElementById('nombre').value;
-            
-            // Simular envío exitoso con animación y feedback visual
+            const nombre = document.getElementById('nombre').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const servicio = document.getElementById('servicioSelect').value;
+            const mensaje = document.getElementById('mensaje').value.trim();
+
+            const telefono = '573169709152';
+
+            const texto = `Hola, soy ${nombre}.
+
+Correo: ${email}
+Servicio de interés: ${servicio}
+
+Mensaje:
+${mensaje}`;
+
+            const whatsappURL = `https://wa.me/${telefono}?text=${encodeURIComponent(texto)}`;
+
+            window.open(whatsappURL, '_blank');
+
             formAlert.classList.remove('d-none');
-            formAlert.textContent = `¡Gracias ${nombre}! Tu solicitud ha sido procesada correctamente. Te responderemos pronto.`;
-            
-            // Limpiar formulario
+            formAlert.classList.remove('alert-danger');
+            formAlert.classList.add('alert-success');
+            formAlert.textContent = `¡Gracias ${nombre}! Se abrió WhatsApp con tu solicitud.`;
+
             contactForm.reset();
 
-            // Ocultar la alerta después de 6 segundos
             setTimeout(() => {
                 formAlert.classList.add('d-none');
             }, 6000);
         });
     }
 
-    // Efecto de desplazamiento suave para los enlaces del menú (Smooth Scroll)
-    document.querySelectorAll('a.nav-link').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
-            if(targetId.startsWith('#')) {
+
+            if (targetId !== '#') {
                 e.preventDefault();
+
                 const targetElement = document.querySelector(targetId);
-                if(targetElement) {
+
+                if (targetElement) {
                     targetElement.scrollIntoView({
                         behavior: 'smooth',
                         block: 'start'
@@ -42,5 +56,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
 });
