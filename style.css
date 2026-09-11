@@ -50,6 +50,80 @@
   --white-2: #333333;
 }
 
+/* Ajustes específicos para tema claro */
+[data-theme="light"] .navbar {
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom-color: var(--border);
+}
+
+[data-theme="light"] .hero {
+  background: radial-gradient(circle at 80% 40%, rgba(0,0,0,.05), transparent 30%),
+              var(--bg);
+}
+
+[data-theme="light"] .terminal-card {
+  background: #f8f9fa;
+  border-color: var(--border);
+  box-shadow: 0 30px 80px rgba(0,0,0,.15);
+}
+
+[data-theme="light"] .terminal-body {
+  color: #333;
+}
+
+[data-theme="light"] .terminal-muted {
+  color: #666;
+}
+
+[data-theme="light"] .service-card {
+  background: var(--bg-card);
+  border-color: var(--border);
+}
+
+[data-theme="light"] .service-card:hover {
+  border-color: var(--border-light);
+}
+
+[data-theme="light"] .contact-form,
+[data-theme="light"] .contact-info a,
+[data-theme="light"] .about-panel,
+[data-theme="light"] .stat {
+  background: var(--bg-card);
+  border-color: var(--border);
+}
+
+[data-theme="light"] .contact-form input,
+[data-theme="light"] .contact-form select,
+[data-theme="light"] .contact-form textarea {
+  background: #f8f9fa;
+  color: var(--text);
+  border-color: var(--border);
+}
+
+[data-theme="light"] .form-check label {
+  color: var(--text-muted);
+}
+
+[data-theme="light"] .footer-links a {
+  color: var(--text-muted);
+}
+
+[data-theme="light"] .footer-links a:hover {
+  color: var(--text);
+}
+
+[data-theme="light"] .accordion-button {
+  color: var(--text);
+}
+
+[data-theme="light"] .accordion-button::after {
+  filter: invert(0);
+}
+
+[data-theme="light"] .accordion-body {
+  color: var(--text-muted);
+}
+
 /* Transición suave para cambios de tema */
 * {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
